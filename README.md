@@ -19,15 +19,19 @@ npx playwright test end-to-end.test.ts
 Le test end-to-end repose sur le scénario suivant, écrit en **Gherkin** :
 
 ```gherkin
-Feature: Création de fiches Leitner
+  Création de fiches d’apprentissage
 
-  Scenario: Un utilisateur connecté crée une nouvelle fiche
-    Given L'utilisateur est connecté
-    When Il clique sur le bouton "Ajouter une fiche"
-    And Il saisit la question "Quelle est la capitale de la France ?"
-    And Il saisit la réponse "Paris"
-    And Il saisit le tag "Capitale" et appuie sur Entrée
-    And Il clique sur le bouton "Ajouter"
-    Then La fiche apparaît dans la liste avec la catégorie 1
+  En tant qu’utilisateur connecté,
+  Je souhaite pouvoir créer des fiches qui seront intégrées dans le système en catégorie 1
+  Afin de pouvoir les réviser plus tard.
+
+  Scenario: Ajout d’une fiche dans la catégorie 1
+    Given Un utilisateur est connecté
+    When Il accède à la page de création de fiche
+    And Il remplit la question avec "Quelle est la capitale de la France ?"
+    And Il remplit la réponse avec "Paris"
+    And il remplit le tag avec "Capitale"
+    And Il clique sur le bouton "Add Card"
+    Then La fiche apparaît dans la liste des fiches en catégorie 1
 ```
 
