@@ -13,8 +13,8 @@ import e from 'express';
     When Il accède à la page de création de fiche
     And Il remplit la question avec "Quelle est la capitale de la France ?"
     And Il remplit la réponse avec "Paris"
-    And il remplit le tag avec "Capitale"
-    And Il clique sur le bouton "Add Card"
+    And Il remplit le tag avec "Capitale"
+    And Il appuie sur la touche "Enter" de son clavier
     Then La fiche apparaît dans la liste des fiches en catégorie 1
 */
 
@@ -29,7 +29,7 @@ test('Création de Carte', async ({ page }) => {
     await page.fill('input[name=answer]', 'Paris');
 
     const tagInput = page.locator('input[name=tag]');
-    await tagInput.fill('Capilole');
+    await tagInput.fill('Capitale');
     await tagInput.press('Enter');
     
 
@@ -41,6 +41,6 @@ test('Création de Carte', async ({ page }) => {
 
     await expect(lastCard).toContainText('Quelle est la capitale de la France ?');
     await expect(lastCard).toContainText('Paris');
-    await expect(lastCard).toContainText('Capilole');
+    await expect(lastCard).toContainText('Capitale');
     await expect(lastCard).toContainText('Category: 1');
 });
